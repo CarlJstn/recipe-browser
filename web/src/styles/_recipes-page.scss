@@ -1,0 +1,63 @@
+@use './_viewport.scss'  as viewport;
+@import "./common-styles";
+
+.recipes-page {
+  padding: 40px;
+  background-color: #fafafa;
+  min-height: 100vh;
+  box-sizing: border-box;
+
+  @include viewport.tablet {
+    padding: 100px 20px;
+  }
+
+  .recipes {
+    display: grid;
+    gap: 20px;
+
+    @include viewport.tablet {
+      max-width: 900px;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      margin: 0 auto;
+    }
+
+    .recipe {
+      @include card();
+      cursor: pointer;
+      max-width: 400px;
+      margin: 0 auto;
+
+      .image {
+        display: block;
+        margin: 0 auto;
+        border-radius: 10px;
+      }
+
+      .title {
+        margin: 10px 0;
+        text-align: center;
+        font-size: 20px;
+        font-weight: 700;
+      }
+
+      .description {
+        text-align: center;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+
+      .pills {
+        display: flex;
+        flex-wrap: wrap;
+        grid-gap: 5px;
+        gap: 5px;
+        align-items: center;
+        justify-content: center;
+
+        .pill {
+          @include pill();
+        }
+      }
+    }
+  }
+}

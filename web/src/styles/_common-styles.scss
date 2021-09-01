@@ -1,0 +1,17 @@
+@mixin pill {
+  width: fit-content;
+  background: #ff6969;
+  padding: 3px 8px;
+  border-radius: 12px;
+  color: white;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+@mixin card {
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid #f7f7f7;
+  box-shadow: 0px 2px 4px rgb(0 0 0 / 5%);
+  padding: 20px;
+}

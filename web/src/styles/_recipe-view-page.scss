@@ -1,0 +1,87 @@
+@use './viewport' as viewport;
+@import "./common-styles";
+
+.recipe-view-page {
+  padding: 40px;
+  background-color: #fafafa;
+  min-height: 100vh;
+  box-sizing: border-box;
+
+  .wrapper {
+    @include viewport.tablet {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .basic-info {
+      display: grid;
+      gap: 15px;
+      margin-bottom: 25px;
+
+      .back-button {
+        color: #909090;
+        font-size: 32px;
+        line-height: 10px;
+        cursor: pointer;
+      }
+
+      .title {
+        font-size: 32px;
+        font-weight: 700;
+      }
+
+      .image {
+        width: calc(100vw - 80px);
+        border-radius: 10px;
+
+        @include viewport.tablet {
+          width: -webkit-fill-available;
+        }
+      }
+
+      .pills {
+        display: flex;
+        flex-wrap: wrap;
+        grid-gap: 5px;
+        gap: 5px;
+        align-items: center;
+        justify-content: flex-start;
+
+        .pill {
+          @include pill();
+        }
+      }
+    }
+
+    .ingredients {
+      @include card();
+
+      > .title {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      .wrapper {
+        display: grid;
+        gap: 15px;
+
+        @include viewport.tablet {
+          gap: 25px;
+        }
+      }
+    }
+
+    .dates {
+      margin-top: 15px;
+      margin-left: 5px;
+
+      .date {
+        font-style: italic;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 17px;
+      }
+    }
+  }
+}
