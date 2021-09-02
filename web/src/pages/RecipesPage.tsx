@@ -23,8 +23,10 @@ export function RecipesPage() {
       });
   }, []);
 
-  if (recipes === undefined) return <div>Fetching recipes...</div>;
-  if (recipes === null) return <div>Failed to fetch recipes. ({error})</div>;
+  if (recipes === undefined)
+    return <div className="message">Fetching recipes...</div>;
+  if (recipes === null)
+    return <div className="message">Failed to fetch recipes. ({error})</div>;
 
   return <div className="recipes-page">{renderRecipes(recipes)}</div>;
 }

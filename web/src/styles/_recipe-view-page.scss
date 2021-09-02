@@ -72,6 +72,26 @@
       }
     }
 
+    .directions {
+      @include card();
+      margin-top: 20px;
+
+      > .title {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      .wrapper {
+        display: grid;
+        gap: 15px;
+
+        @include viewport.tablet {
+          gap: 25px;
+        }
+      }
+    }
+
     .dates {
       margin-top: 15px;
       margin-left: 5px;

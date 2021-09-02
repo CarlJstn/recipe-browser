@@ -5,6 +5,8 @@ import { Recipe } from "../models/Recipe";
 import { Ingredient } from "../models/Ingredient";
 import { RecipeIngredientWidget } from "../widgets/RecipeIngredientWidget";
 import { Special } from "../models/Special";
+import { Direction } from "../models/Direction";
+import { RecipeDirectionWidget } from "../widgets/RecipeDirectionWidget";
 
 export function RecipeViewPage() {
   const [recipe, setRecipe] = useState<Recipe | undefined | null>();
@@ -46,9 +48,14 @@ export function RecipeViewPage() {
       });
   }, []);
 
-  if (recipe === undefined) return <div>Fetching recipe...</div>;
+  if (recipe === undefined)
+    return <div className="message">Fetching recipe...</div>;
   if (recipe === null)
-    return <div>Failed to fetch recipe. ({recipeFetchError})</div>;
+    return (
+      <div className="message">
+        Failed to fetch recipe. ({recipeFetchError})
+      </div>
+    );
 
   return (
     <div className="recipe-view-page">
@@ -59,6 +66,7 @@ export function RecipeViewPage() {
           specials,
           specialsFetchError,
         })}
+        {renderDirections(recipe.directions)}
         {renderDates(recipe)}
       </div>
     </div>
@@ -94,9 +102,14 @@ const renderIngredients = (args: {
 }) => {
   const { ingredients, specials, specialsFetchError } = args;
 
-  if (specials === undefined) return <div>Fetching specials...</div>;
+  if (specials === undefined)
+    return <div className="message">Fetching specials...</div>;
   if (specials === null)
-    return <div>Failed to fetch specials. ({specialsFetchError})</div>;
+    return (
+      <div className="message">
+        Failed to fetch specials. ({specialsFetchError})
+      </div>
+    );
 
   return (
     <div className="ingredients">
@@ -108,6 +121,19 @@ const renderIngredients = (args: {
           )[0];
           return RecipeIngredientWidget({ ingredient, special });
         })}
+      </div>
+    </div>
+  );
+};
+
+const renderDirections = (directions: Direction[]) => {
+  return (
+    <div className="directions">
+      <div className="title">Directions:</div>
+      <div className="wrapper">
+        {directions.map((direction: Direction, index: number) =>
+          RecipeDirectionWidget({ direction, index })
+        )}
       </div>
     </div>
   );
